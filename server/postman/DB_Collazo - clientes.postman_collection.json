@@ -1,0 +1,606 @@
+{
+	"info": {
+		"_postman_id": "8ea14fd9-c99a-4b85-90d0-8cd7ebe25108",
+		"name": "DB_Collazo / clientes",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "41346734"
+	},
+	"item": [
+		{
+			"name": "Clientes",
+			"item": [
+				{
+					"name": "obtener_clientes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/clientes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"clientes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener_Un_Cliente",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/clientes/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"clientes",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "agregar_clientes",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": 0,\r\n  \"nombre\": \"Cesar David\",\r\n  \"email\": \"cesar.sanchez@example.com\",\r\n  \"status\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/clientes/agregar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"clientes",
+								"agregar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "eliminar_clientes",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": 3\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/clientes/eliminar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"clientes",
+								"eliminar"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "StartFragment\n\n### 🟢 Rutas disponibles\n\n### 📂 Clientes\n\n- **GET** `/api/clientes` → Lista todos\n    \n- **GET** `/api/clientes/:id`\n    \n- **POST** `/api/clientes/agregar` → `{ id: 0, nombre: \"Pedro\", ... }`\n    \n- **POST** `/api/clientes/eliminar` → `{ id: 1 }`\n    \n\nnotionvc: 7c3baae3-20ad-42da-9199-57e3c58f28ed EndFragment"
+		},
+		{
+			"name": "Usuarios",
+			"item": [
+				{
+					"name": "obtener_usuarios",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/usuario",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"usuario"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "obtener_un_usuario",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/usuario/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"usuario",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "alta_user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"id\": 0,\n  \"nombre\": \"Cr David\",\n  \"pw\": \"1234\",\n  \"email\": \"david.sanchez@example.com\",\n  \"status\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/usuario/agregar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"usuario",
+								"agregar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "eliminar_usuario",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": \"3\" \r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/usuario/eliminar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"usuario",
+								"eliminar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"user\": \"david.sanchez@example.com\",\n  \"password\": \"1234\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/usuario/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"usuario",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "#### 👤 Usuario\n\n- **GET** `/api/usuario`\n    \n- **POST** `/api/usuario/agregar` → `{ id: 0, email, pw, nombre, status }`\n    \n- **POST** `/api/usuario/eliminar` → `{ id: 1 }`\n    \n- **POST** `/api/usuario/login` → `{ user: \"correo\", password: \"clave\" }`"
+		},
+		{
+			"name": "Puertas",
+			"item": [
+				{
+					"name": "Obtener_Puertas",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"user\": \"cesar.sanchez@example.com\",\n  \"password\": \"1234\"\n}\n"
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/puertas",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"puertas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener_una_puerta_ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/puertas/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"puertas",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Agregar_Puerta",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": 0,\r\n  \"nombre\": \"Puerta Principal\",\r\n  \"estado\": \"abierta\",\r\n  \"registro_entrada\": true\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/puertas/agregar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"puertas",
+								"agregar"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Agregar_Puerta",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"id\": 0,\r\n  \"nombre\": \"Puerta Principal\",\r\n  \"estado\": \"abierta\",\r\n  \"registro_entrada\": true\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:4000/api/puertas/agregar",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "4000",
+									"path": [
+										"api",
+										"puertas",
+										"agregar"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "78"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"4e-5++0/5VjTOhEU5AuHkMt5LN3s/o\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 19 Jun 2025 12:16:42 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error\": true,\n    \"status\": 500,\n    \"variant\": \"error\",\n    \"body\": \"Error al guardar puerta\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Eliminar_Puerta",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"id\": 1\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/puertas/eliminar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"puertas",
+								"eliminar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar_puerta",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": 2,\r\n  \"nombre\": \"Cocina\",\r\n  \"estado\": \"cerrada\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/puertas/actualizar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"puertas",
+								"actualizar"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "#### 🔒 Puertas\n\n- **GET** `/api/puertas`\n    \n- **GET** `/api/puertas/:id`\n    \n- **POST** `/api/puertas/agregar`\n    \n- **POST** `/api/puertas/eliminar`"
+		},
+		{
+			"name": "Luces",
+			"item": [
+				{
+					"name": "Obtener_todas_luces",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"user\": \"cesar.sanchez@example.com\",\n  \"password\": \"1234\"\n}\n"
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/luces",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"luces"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener_una_luces_ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/luces/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"luces",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Agregar_luz",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": 0,\r\n  \"nombre\": \"Cocina\",\r\n  \"estado\": \"encendida\",\r\n  \"intensidad\": 80\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/luces/agregar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"luces",
+								"agregar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar_luz",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": 1\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/luces/eliminar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"luces",
+								"eliminar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar_Luz",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": 2,\r\n  \"nombre\": \"cU\",\r\n  \"estado\": \"encendida\",\r\n  \"intensidad\": 75\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/luces/actualizar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"luces",
+								"actualizar"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
