@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { Alert, View } from "react-native";
+import { Alert, View, StyleSheet } from "react-native";
 import { TextInput, Button, Text } from "react-native-paper";
 import { useNavigation } from "@react-navigation/native";
 import { estadoLoginGlobal } from "../../context/contexData";
@@ -12,7 +12,6 @@ export default function ScreenCrearCuenta() {
   const rutasSignup = useNavigation();
 
   const api = process.env.EXPO_PUBLIC_API_URL;
-
   const { login } = useContext(estadoLoginGlobal);
 
   const handleCrearCuenta = async () => {
@@ -20,6 +19,7 @@ export default function ScreenCrearCuenta() {
       Alert.alert("Atención", "Todos los campos son obligatorios");
       return;
     }
+
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
 
@@ -57,13 +57,13 @@ export default function ScreenCrearCuenta() {
   };
 
   return (
-    <View style={{ padding: 10, flex: 1, justifyContent: "center" }}>
-      <Text style={{ textAlign: "center" }} variant="displayLarge">
+    <View style={styles.container}>
+      <Text style={styles.title} variant="displaySmall">
         Crear Cuenta
       </Text>
 
       <TextInput
-        style={{ marginTop: 10 }}
+        style={styles.input}
         label="Nombre"
         value={nombre}
         onChangeText={setNombre}
@@ -71,7 +71,7 @@ export default function ScreenCrearCuenta() {
       />
 
       <TextInput
-        style={{ marginTop: 10 }}
+        style={styles.input}
         label="Email"
         keyboardType="email-address"
         value={email}
@@ -80,7 +80,7 @@ export default function ScreenCrearCuenta() {
       />
 
       <TextInput
-        style={{ marginTop: 10 }}
+        style={styles.input}
         label="Password"
         secureTextEntry={verpw}
         value={password}
@@ -89,13 +89,52 @@ export default function ScreenCrearCuenta() {
         right={<TextInput.Icon icon="eye" onPress={() => setVerpw(!verpw)} />}
       />
 
-      <Button mode="contained" icon="account-plus" style={{ marginTop: 20, padding: 10 }} onPress={handleCrearCuenta}>
+      <Button
+        mode="contained"
+        icon="account-plus"
+        style={styles.mainButton}
+        contentStyle={{ paddingVertical: 6 }}
+        onPress={handleCrearCuenta}
+      >
         Crear cuenta
       </Button>
 
-      <Button mode="text" style={{ marginTop: 10 }} onPress={() => rutasSignup.push("login")}>
+      <Button
+        mode="text"
+        style={styles.textButton}
+        onPress={() => rutasSignup.push("login")}
+      >
         ¿Ya tienes cuenta? Inicia sesión
       </Button>
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#F9F9F9",
+    padding: 20,
+    justifyContent: "center",
+  },
+  title: {
+    textAlign: "center",
+    marginBottom: 24,
+    fontSize: 28,
+    fontWeight: "600",
+    color: "#111827",
+  },
+  input: {
+    backgroundColor: "#FFFFFF",
+    marginBottom: 16,
+    borderRadius: 8,
+  },
+  mainButton: {
+    backgroundColor: "#111827",
+    marginTop: 8,
+    borderRadius: 8,
+  },
+  textButton: {
+    marginTop: 12,
+  },
+});

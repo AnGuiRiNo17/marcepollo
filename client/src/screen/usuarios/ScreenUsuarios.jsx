@@ -5,10 +5,8 @@ import { estadoLoginGlobal } from "../../context/contexData";
 
 export default function ScreenUsuarios() {
   const [page, setPage] = useState(0);
-  const [numberOfItemsPerPageList] = useState([10, 11, 12, 13, 14, 15]);
-  const [itemsPerPage, onItemsPerPageChange] = useState(
-    numberOfItemsPerPageList[0]
-  );
+  const numberOfItemsPerPageList = [10, 11, 12, 13, 14, 15];
+  const [itemsPerPage, onItemsPerPageChange] = useState(numberOfItemsPerPageList[0]);
 
   const { getDataUsers, dataUsers, deleteUser } = useContext(estadoLoginGlobal);
 
@@ -21,7 +19,11 @@ export default function ScreenUsuarios() {
   }, [itemsPerPage]);
 
   if (!dataUsers || dataUsers.length === 0) {
-    return <Text style={{ padding: 20 }}>Cargando usuarios...</Text>;
+    return (
+      <View style={styles.loadingContainer}>
+        <Text style={styles.loadingText}>Cargando usuarios...</Text>
+      </View>
+    );
   }
 
   const items = dataUsers;
@@ -29,9 +31,9 @@ export default function ScreenUsuarios() {
   const to = Math.min((page + 1) * itemsPerPage, items.length);
 
   return (
-    <View style={{ padding: 20 }}>
-      <Text style={{ fontSize: 20, marginBottom: 10 }}>Lista de Usuarios</Text>
-      <Card>
+    <View style={styles.container}>
+      <Text style={styles.title}>Lista de Usuarios</Text>
+      <Card style={styles.card}>
         <DataTable>
           <DataTable.Header>
             <DataTable.Title>Nombre</DataTable.Title>
@@ -51,6 +53,7 @@ export default function ScreenUsuarios() {
                   iconColor={MD3Colors.error50}
                   size={20}
                   onPress={() => deleteUser(item)}
+                  accessibilityLabel={`Eliminar usuario ${item.nombre}`}
                 />
               </DataTable.Cell>
             </DataTable.Row>
@@ -59,7 +62,7 @@ export default function ScreenUsuarios() {
           <DataTable.Pagination
             page={page}
             numberOfPages={Math.ceil(items.length / itemsPerPage)}
-            onPageChange={(page) => setPage(page)}
+            onPageChange={setPage}
             label={`${from + 1}-${to} de ${items.length}`}
             numberOfItemsPerPageList={numberOfItemsPerPageList}
             numberOfItemsPerPage={itemsPerPage}
@@ -73,4 +76,37 @@ export default function ScreenUsuarios() {
   );
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: 20,
+    backgroundColor: "#F9FAFB",
+  },
+  title: {
+    fontSize: 22,
+    fontWeight: "700",
+    marginBottom: 16,
+    color: "#1C1C1E",
+    textAlign: "center",
+  },
+  card: {
+    borderRadius: 16,
+    elevation: 6,
+    shadowColor: "#7C3AED",
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.15,
+    shadowRadius: 12,
+    backgroundColor: "#FFFFFF",
+  },
+  loadingContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    padding: 24,
+  },
+  loadingText: {
+    fontSize: 18,
+    color: "#7C3AED",
+    fontWeight: "600",
+  },
+});

@@ -3,12 +3,12 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-     "start": "node src/index.js",
+    "start": "node src/index.js",
     "dev": "nodemon src/index.js"
   },
   "author": "isc.MarcelinoCL",
   "license": "ISC",
-  "description": "",
+  "description": "¡Claro, César! Aquí tienes un archivo `README.md` **profesional, claro y listo para subir a tu repositorio de GitHub**, con todo lo que has hecho: descripción, estructura de la base de datos `cobranza`, endpoints, pasos de uso y cómo probar en Postman.",
   "dependencies": {
     "bcrypt": "^6.0.0",
     "cors": "^2.8.5",
@@ -18,5 +18,7 @@
   },
   "devDependencies": {
     "dotenv": "^16.4.7"
-  }
+  },
+  "keywords": [],
+  "type": "commonjs"
 }

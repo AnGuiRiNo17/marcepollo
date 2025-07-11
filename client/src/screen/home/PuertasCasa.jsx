@@ -13,18 +13,13 @@ export default function PuertasCasas() {
   const { ObtenerTodasPuertas, establecerEstadoPuertasDesdeLista } = useContext(estadoDevicesGlobal);
 
   const obtenerPuertas = async () => {
-    const requestOptions = {
-      method: "GET",
-      redirect: "follow",
-    };
     try {
-      const response = await fetch(`${api}/api/puertas`, requestOptions);
+      const response = await fetch(`${api}/api/puertas`, { method: "GET", redirect: "follow" });
       const data = await response.json();
       if (Array.isArray(data.body)) {
         setPuertas(data.body);
         establecerEstadoPuertasDesdeLista(data.body);
         ObtenerTodasPuertas(true);
-        
       } else {
         console.error("La propiedad 'body' no es un arreglo:", data.body);
       }
@@ -40,21 +35,19 @@ export default function PuertasCasas() {
   }, []);
 
   return (
-    <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>s
-
+    <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
       <View style={styles.actionSection}>
-        <View style={styles.actionHeader}>
-        </View>
+        <View style={styles.actionHeader} />
         <BotonAddPuerta recargarPuertas={obtenerPuertas} />
       </View>
 
       <View style={styles.contentSection}>
         <Text style={styles.sectionTitle}>Panel de Puertas</Text>
-        
+
         {cargando ? (
           <View style={styles.loadingContainer}>
             <View style={styles.loadingContent}>
-              <ActivityIndicator animating={true} color="#8B5CF6" size="large" />
+              <ActivityIndicator animating={true} color="#007AFF" size="large" />
               <Text style={styles.loadingText}>Sincronizando dispositivos...</Text>
               <View style={styles.loadingDots}>
                 <View style={[styles.dot, styles.dot1]} />
@@ -71,7 +64,7 @@ export default function PuertasCasas() {
               </View>
               <Text style={styles.emptyStateTitle}>¡Conecta tu primera puerta!</Text>
               <Text style={styles.emptyStateSubtitle}>
-                Transforma tu hogar en un espacio inteligente.{'\n'}
+                Transforma tu hogar en un espacio inteligente.{"\n"}
                 Agrega puertas y controla el acceso desde cualquier lugar.
               </Text>
               <View style={styles.emptyFeatures}>
@@ -93,11 +86,7 @@ export default function PuertasCasas() {
         ) : (
           <View style={styles.puertasGrid}>
             {puertas.map((puerta) => (
-              <PuertaCard 
-                key={puerta.id} 
-                puerta={puerta} 
-                recargarPuertas={obtenerPuertas} 
-              />
+              <PuertaCard key={puerta.id} puerta={puerta} recargarPuertas={obtenerPuertas} />
             ))}
           </View>
         )}
@@ -109,101 +98,31 @@ export default function PuertasCasas() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#F3F2FF",
-  },
-  header: {
-    marginBottom: 24,
-  },
-  headerGradient: {
-    backgroundColor: "#8B5CF6",
-    paddingHorizontal: 24,
-    paddingTop: 32,
-    paddingBottom: 28,
-    borderBottomLeftRadius: 28,
-    borderBottomRightRadius: 28,
-    shadowColor: "#8B5CF6",
-    shadowOffset: {
-      width: 0,
-      height: 8,
-    },
-    shadowOpacity: 0.3,
-    shadowRadius: 16,
-    elevation: 12,
-  },
-  title: {
-    fontSize: 32,
-    fontWeight: "800",
-    color: "#FFFFFF",
-    marginBottom: 6,
-    letterSpacing: -0.8,
-    textAlign: "center",
-  },
-  subtitle: {
-    fontSize: 16,
-    color: "#E5E7EB",
-    fontWeight: "500",
-    textAlign: "center",
-    marginBottom: 20,
-    opacity: 0.9,
-  },
-  statsContainer: {
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "rgba(255, 255, 255, 0.15)",
-    borderRadius: 16,
-    paddingVertical: 12,
-    paddingHorizontal: 20,
-    backdropFilter: "blur(10px)",
-  },
-  statItem: {
-    alignItems: "center",
-    flex: 1,
-  },
-  statNumber: {
-    fontSize: 20,
-    fontWeight: "700",
-    color: "#FFFFFF",
-    marginBottom: 2,
-  },
-  statLabel: {
-    fontSize: 12,
-    color: "#E5E7EB",
-    fontWeight: "500",
-    opacity: 0.8,
-  },
-  statDivider: {
-    width: 1,
-    height: 30,
-    backgroundColor: "rgba(255, 255, 255, 0.3)",
-    marginHorizontal: 20,
+    backgroundColor: "#F9FAFB",
   },
   actionSection: {
     marginHorizontal: 20,
     marginTop: 24,
     marginBottom: 24,
     backgroundColor: "#FFFFFF",
-    borderRadius: 20,
-    padding: 20,
-    shadowColor: "#8B5CF6",
-    shadowOffset: {
-      width: 0,
-      height: 4,
-    },
-    shadowOpacity: 0.1,
-    shadowRadius: 12,
-    elevation: 6,
-    borderWidth: 1,
-    borderColor: "#EDE9FE",
+    borderRadius: 16,
+    padding: 16,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.05,
+    shadowRadius: 6,
+    elevation: 2,
+    borderWidth: 0.5,
+    borderColor: "#E5E5EA",
   },
   actionHeader: {
-    marginBottom: 16,
+    marginBottom: 12,
   },
   sectionTitle: {
-    fontSize: 18,
-    fontWeight: "700",
-    color: "#374151",
-    marginBottom: 8,
+    fontSize: 20,
+    fontWeight: "600",
+    color: "#1C1C1E",
+    marginBottom: 12,
     marginLeft: 4,
   },
   contentSection: {
@@ -213,106 +132,78 @@ const styles = StyleSheet.create({
   },
   loadingContainer: {
     backgroundColor: "#FFFFFF",
-    borderRadius: 20,
+    borderRadius: 16,
     marginTop: 12,
-    shadowColor: "#8B5CF6",
-    shadowOffset: {
-      width: 0,
-      height: 4,
-    },
-    shadowOpacity: 0.08,
-    shadowRadius: 12,
-    elevation: 4,
     borderWidth: 1,
-    borderColor: "#EDE9FE",
+    borderColor: "#E5E5EA",
+    padding: 32,
+    alignItems: "center",
   },
   loadingContent: {
-    paddingVertical: 60,
-    paddingHorizontal: 32,
     alignItems: "center",
   },
   loadingText: {
-    fontSize: 18,
-    color: "#7C3AED",
-    marginTop: 20,
-    fontWeight: "600",
+    fontSize: 16,
+    color: "#3A3A3C",
+    marginTop: 16,
+    fontWeight: "500",
     textAlign: "center",
   },
   loadingDots: {
     flexDirection: "row",
-    marginTop: 16,
+    marginTop: 12,
   },
   dot: {
-    width: 8,
-    height: 8,
-    borderRadius: 4,
-    backgroundColor: "#C4B5FD",
+    width: 6,
+    height: 6,
+    borderRadius: 3,
+    backgroundColor: "#C7C7CC",
     marginHorizontal: 4,
   },
-  dot1: {
-    opacity: 1,
-  },
-  dot2: {
-    opacity: 0.7,
-  },
-  dot3: {
-    opacity: 0.4,
-  },
+  dot1: { opacity: 1 },
+  dot2: { opacity: 0.6 },
+  dot3: { opacity: 0.3 },
   emptyStateContainer: {
     backgroundColor: "#FFFFFF",
-    borderRadius: 20,
+    borderRadius: 16,
     marginTop: 12,
-    shadowColor: "#8B5CF6",
-    shadowOffset: {
-      width: 0,
-      height: 4,
-    },
-    shadowOpacity: 0.08,
-    shadowRadius: 12,
-    elevation: 4,
+    padding: 24,
     borderWidth: 1,
-    borderColor: "#EDE9FE",
+    borderColor: "#E5E5EA",
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.05,
+    shadowRadius: 4,
+    elevation: 2,
   },
   emptyStateContent: {
-    paddingVertical: 48,
-    paddingHorizontal: 28,
     alignItems: "center",
   },
   emptyIconContainer: {
-    backgroundColor: "#FAF5FF",
-    width: 100,
-    height: 100,
-    borderRadius: 50,
+    backgroundColor: "#F2F2F7",
+    width: 80,
+    height: 80,
+    borderRadius: 40,
     justifyContent: "center",
     alignItems: "center",
-    marginBottom: 24,
-    shadowColor: "#8B5CF6",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.1,
-    shadowRadius: 8,
-    elevation: 3,
+    marginBottom: 20,
   },
   emptyStateIcon: {
-    fontSize: 40,
+    fontSize: 36,
   },
   emptyStateTitle: {
-    fontSize: 22,
-    fontWeight: "700",
-    color: "#374151",
+    fontSize: 20,
+    fontWeight: "600",
+    color: "#1C1C1E",
     textAlign: "center",
-    marginBottom: 12,
-    letterSpacing: -0.3,
+    marginBottom: 10,
   },
   emptyStateSubtitle: {
-    fontSize: 16,
-    color: "#6B7280",
+    fontSize: 15,
+    color: "#8E8E93",
     textAlign: "center",
-    lineHeight: 24,
-    marginBottom: 32,
-    opacity: 0.8,
+    lineHeight: 22,
+    marginBottom: 24,
   },
   emptyFeatures: {
     flexDirection: "row",
@@ -324,13 +215,13 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   featureIcon: {
-    fontSize: 24,
-    marginBottom: 8,
+    fontSize: 20,
+    marginBottom: 6,
   },
   featureText: {
     fontSize: 12,
-    color: "#8B5CF6",
-    fontWeight: "600",
+    color: "#007AFF",
+    fontWeight: "500",
     textAlign: "center",
   },
   puertasGrid: {
